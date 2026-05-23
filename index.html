@@ -11,20 +11,12 @@
   padding:0;
   box-sizing:border-box;
   font-family:Arial, sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
-  background:#050816;
+  background:#070b18;
   color:white;
-  overflow-x:hidden;
-}
-
-/* PARTICLE CANVAS */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
 }
 
 /* NAV */
@@ -32,13 +24,13 @@ nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:15px 25px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  background:rgba(10,15,30,0.6);
+  padding:15px 25px;
+  background:rgba(10,15,30,0.8);
   backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid #1f2937;
+  z-index:1000;
 }
 
 nav h2{
@@ -47,8 +39,8 @@ nav h2{
 
 nav a{
   color:white;
-  text-decoration:none;
   margin-left:15px;
+  text-decoration:none;
   font-size:14px;
 }
 
@@ -61,10 +53,11 @@ nav a{
   align-items:center;
   text-align:center;
   padding:20px;
+  background:linear-gradient(135deg,#0f172a,#070b18);
 }
 
 .hero h1{
-  font-size:55px;
+  font-size:50px;
   background:linear-gradient(90deg,#38bdf8,#a78bfa);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -78,7 +71,7 @@ nav a{
 
 .btn{
   margin-top:20px;
-  padding:12px 25px;
+  padding:12px 22px;
   background:linear-gradient(90deg,#22c55e,#38bdf8);
   border:none;
   border-radius:10px;
@@ -94,11 +87,23 @@ nav a{
 
 /* SECTIONS */
 section{
-  padding:90px 20px;
+  padding:80px 20px;
   text-align:center;
 }
 
-/* GLASS CARD */
+/* ANIMATION */
+.hidden{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CARDS */
 .cards{
   display:flex;
   justify-content:center;
@@ -109,9 +114,9 @@ section{
 .card{
   width:260px;
   padding:20px;
-  border-radius:15px;
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.1);
+  border-radius:15px;
   backdrop-filter:blur(10px);
   transition:0.3s;
 }
@@ -122,24 +127,19 @@ section{
 }
 
 .price{
-  font-size:22px;
   color:#facc15;
+  font-size:22px;
   margin:10px 0;
 }
 
 /* SERVICES */
-.service-box{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:15px;
-}
-
 .service{
   padding:15px;
   border-radius:10px;
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.1);
+  margin:10px;
+  display:inline-block;
   transition:0.3s;
 }
 
@@ -157,20 +157,14 @@ section{
   align-items:center;
   background:rgba(255,255,255,0.05);
   border-radius:10px;
-  border:1px solid rgba(255,255,255,0.1);
-  transition:0.3s;
-}
-
-.project:hover{
-  transform:scale(1.1);
-  background:rgba(56,189,248,0.1);
+  margin:10px;
 }
 
 /* CONTACT */
 input,textarea{
   width:80%;
   padding:10px;
-  margin:10px 0;
+  margin:8px;
   border:none;
   border-radius:8px;
 }
@@ -181,6 +175,14 @@ button{
   border:none;
   border-radius:10px;
   cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#0f172a;
+  color:#94a3b8;
 }
 
 /* WHATSAPP */
@@ -200,26 +202,25 @@ button{
 
 <body>
 
-<canvas id="particles"></canvas>
-
 <nav>
   <h2>Sh Web Dev</h2>
   <div>
     <a href="#pricing">Pricing</a>
     <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Build Your Digital Empire</h1>
-  <p>We create high-performance websites for modern businesses</p>
+  <h1>Build Your Online Business</h1>
+  <p>Modern Websites for Shops & Brands</p>
   <a class="btn" href="#contact">Get Started</a>
 </div>
 
 <!-- PRICING -->
-<section id="pricing">
+<section id="pricing" class="hidden">
   <h2>Pricing</h2>
 
   <div class="cards">
@@ -241,20 +242,28 @@ button{
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" class="hidden">
   <h2>Services</h2>
 
-  <div class="service-box">
+  <div>
     <div class="service">Business Websites</div>
     <div class="service">Landing Pages</div>
     <div class="service">E-commerce</div>
-    <div class="service">Portfolio</div>
+    <div class="service">Portfolio Sites</div>
   </div>
 </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio" class="hidden">
+  <h2>Portfolio</h2>
+
+  <div class="project">Project 1</div>
+  <div class="project">Project 2</div>
+</section>
+
 <!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
+<section id="contact" class="hidden">
+  <h2>Contact Us</h2>
 
   <form onsubmit="send(); return false;">
     <input placeholder="Name" required><br>
@@ -262,54 +271,35 @@ button{
     <textarea placeholder="Requirement"></textarea><br>
     <button>Send</button>
   </form>
+
+  <p style="margin-top:15px;">
+    📞 9650787601
+  </p>
 </section>
 
-<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">💬</a>
+<footer>
+  © 2026 Sh Web Developer Agency
+</footer>
+
+<a class="whatsapp" href="https://wa.me/919650787601">💬</a>
 
 <script>
 function send(){
-  alert("We will contact you on WhatsApp!");
+  alert("We will contact you soon on WhatsApp!");
 }
 
-/* PARTICLES */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+/* scroll animation */
+const elements = document.querySelectorAll('.hidden');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for(let i=0;i<80;i++){
-  particles.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    r: Math.random()*2,
-    dx: (Math.random()-0.5)*1,
-    dy: (Math.random()-0.5)*1
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
   });
-}
+});
 
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle="white";
-    ctx.fill();
-
-    p.x += p.dx;
-    p.y += p.dy;
-
-    if(p.x<0||p.x>canvas.width) p.dx*=-1;
-    if(p.y<0||p.y>canvas.height) p.dy*=-1;
-  });
-
-  requestAnimationFrame(draw);
-}
-
-draw();
+elements.forEach(el=>observer.observe(el));
 </script>
 
 </body>
