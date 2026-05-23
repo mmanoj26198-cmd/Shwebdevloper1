@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sh Web Developer Agency</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#050816;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* PARTICLE CANVAS */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(10,15,30,0.6);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+nav h2{
+  color:#38bdf8;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:15px;
+  font-size:14px;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:55px;
+  background:linear-gradient(90deg,#38bdf8,#a78bfa);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  color:#94a3b8;
+  margin-top:10px;
+  font-size:18px;
+}
+
+.btn{
+  margin-top:20px;
+  padding:12px 25px;
+  background:linear-gradient(90deg,#22c55e,#38bdf8);
+  border:none;
+  border-radius:10px;
+  color:black;
+  font-weight:bold;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+}
+
+/* SECTIONS */
+section{
+  padding:90px 20px;
+  text-align:center;
+}
+
+/* GLASS CARD */
+.cards{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.card{
+  width:260px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#38bdf8;
+}
+
+.price{
+  font-size:22px;
+  color:#facc15;
+  margin:10px 0;
+}
+
+/* SERVICES */
+.service-box{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+}
+
+.service{
+  padding:15px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+
+.service:hover{
+  transform:scale(1.1);
+  border-color:#a78bfa;
+}
+
+/* PORTFOLIO */
+.project{
+  width:200px;
+  height:120px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+
+.project:hover{
+  transform:scale(1.1);
+  background:rgba(56,189,248,0.1);
+}
+
+/* CONTACT */
+input,textarea{
+  width:80%;
+  padding:10px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+}
+
+button{
+  padding:12px 20px;
+  background:#38bdf8;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  font-size:22px;
+  text-decoration:none;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <h2>Sh Web Dev</h2>
+  <div>
+    <a href="#pricing">Pricing</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Build Your Digital Empire</h1>
+  <p>We create high-performance websites for modern businesses</p>
+  <a class="btn" href="#contact">Get Started</a>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <h2>Pricing</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Basic</h3>
+      <div class="price">₹15,000</div>
+    </div>
+
+    <div class="card">
+      <h3>Standard ⭐</h3>
+      <div class="price">₹25,000</div>
+    </div>
+
+    <div class="card">
+      <h3>Premium</h3>
+      <div class="price">₹50,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>Services</h2>
+
+  <div class="service-box">
+    <div class="service">Business Websites</div>
+    <div class="service">Landing Pages</div>
+    <div class="service">E-commerce</div>
+    <div class="service">Portfolio</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+
+  <form onsubmit="send(); return false;">
+    <input placeholder="Name" required><br>
+    <input placeholder="Business Type" required><br>
+    <textarea placeholder="Requirement"></textarea><br>
+    <button>Send</button>
+  </form>
+</section>
+
+<a class="whatsapp" href="https://wa.me/91XXXXXXXXXX">💬</a>
+
+<script>
+function send(){
+  alert("We will contact you on WhatsApp!");
+}
+
+/* PARTICLES */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2,
+    dx: (Math.random()-0.5)*1,
+    dy: (Math.random()-0.5)*1
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx*=-1;
+    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>
